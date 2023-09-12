@@ -12,6 +12,7 @@ public class Mecanum implements Subsystem
     private DcMotorEx leftFront, leftRear, rightFront, rightRear;
     private double leftFrontPower, leftRearPower, rightFrontPower, rightRearPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
+    private double slowOffset = 0.5;
     private RevIMU imu;
 
     public Mecanum (HardwareMap hardwareMap)
@@ -64,4 +65,11 @@ public class Mecanum implements Subsystem
         rightRear.setPower(rightRearPower);
     }
 
+    public void setMotorSlowDownPower()
+    {
+        leftFront.setPower(leftFrontPower * slowOffset);
+        leftRear.setPower(leftRearPower * slowOffset);
+        rightFront.setPower(rightFrontPower * slowOffset);
+        rightRear.setPower(rightRearPower * slowOffset);
+    }
 }
