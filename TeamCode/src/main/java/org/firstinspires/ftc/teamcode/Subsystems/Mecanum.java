@@ -13,8 +13,9 @@ public class Mecanum implements Subsystem
     private double leftFrontPower, leftRearPower, rightFrontPower, rightRearPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
     private double slowOffset = 0.5;
-    private RevIMU imu;
+    BNO055IMU imu;
 
+    BNO055IMU.Parameters parameters;
     public Mecanum (HardwareMap hardwareMap)
     {
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
@@ -26,29 +27,29 @@ public class Mecanum implements Subsystem
         leftFront.setDirection(DcMotorEx.Direction.REVERSE);
 
         // Retrieve the IMU from the hardware map
-        imu = (RevIMU) hardwareMap.get(BNO055IMU.class, "imu");
+        imu = hardwareMap.get(BNO055IMU.class, "cIMU");
         // Makes a new object titled 'parameters' usd to hold the angle of the IMU
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.RADIANS;
         // Without this, data retrieving from the IMU throws an exception
-        imu.init();
+        imu.initialize(parameters);
     }
 
     public void resetIMU()
     {
-        imu.reset();
+        imu.initialize(parameters);
     }
 
     public void drive (GamepadEx gamepad1)
     {
-        y = -gamepad1.getLeftY();
+        y = gamepad1.getLeftY();
         x = gamepad1.getLeftX();
         rx = gamepad1.getRightX();;
 
-        double botHeading = Math.toRadians(-imu.getHeading()+180);
+        double botHeading = -imu.getAngularOrientation().firstAngle;
 
-        rotX = x * Math.cos(-botHeading) - y * Math.sin(-botHeading);
-        rotY = x * Math.sin(-botHeading) + y * Math.cos(-botHeading);
+        rotX = x * Math.cos(botHeading) - y * Math.sin(botHeading);
+        rotY = x * Math.sin(botHeading) + y * Math.cos(botHeading);
 
         denominator = Math.max(Math.abs(rotY) + Math.abs(rotX) + Math.abs(rx), 1);
         leftFrontPower = (rotY + rotX + rx) / denominator;
@@ -57,7 +58,7 @@ public class Mecanum implements Subsystem
         rightRearPower = (rotY + rotX - rx) / denominator;
     }
 
-    public void setMotorPower(double leftFrontPower, double leftRearPower, double rightFrontPower, double rightRearPower)
+    public void setMotorPower()
     {
         leftFront.setPower(leftFrontPower);
         leftRear.setPower(leftRearPower);
