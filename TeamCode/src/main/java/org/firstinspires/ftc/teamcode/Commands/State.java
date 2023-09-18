@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.Commands;
 
-public enum States
+public enum State
 {
     HIGH, MEDIUM, LOW, GROUND, INTAKING,
 }
