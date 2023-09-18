@@ -60,10 +60,10 @@ public class Mecanum implements Subsystem
 
     public void setMotorPower()
     {
-        leftFront.setPower(leftFrontPower);
-        leftRear.setPower(leftRearPower);
-        rightFront.setPower(rightFrontPower);
-        rightRear.setPower(rightRearPower);
+        leftFront.setPower(leftFrontPower * offset);
+        leftRear.setPower(leftRearPower * offset);
+        rightFront.setPower(rightFrontPower * offset);
+        rightRear.setPower(rightRearPower * offset);
     }
 
     public void setMotorSlowDownPower()
