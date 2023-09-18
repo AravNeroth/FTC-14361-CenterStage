@@ -9,6 +9,11 @@ public class Robot
     public IntakeSlide intakeSlide;
     public OuttakeSlide outtakeSlide;
 
+    public Robot()
+    {
+
+    }
+
     public void setPosition(State state)
     {
         claw.setPosition(state);
