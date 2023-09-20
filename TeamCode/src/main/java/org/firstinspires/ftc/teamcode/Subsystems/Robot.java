@@ -33,6 +33,23 @@ public class Robot
         intakeSlide.setPosition(state);
     }
 
+    public void resetEncoder()
+    {
+        outtakeSlide.resetEncoder();
+        intakeSlide.resetEncoder();
+    }
+
+    public void setZeroBehavior()
+    {
+        outtakeSlide.setZeroBehavior();
+        intakeSlide.setZeroBehavior();
+    }
+    public void initPID()
+    {
+        outtakeSlide.initPID();
+        intakeSlide.initPID();
+    }
+
     public State getState()
     {
         return state;

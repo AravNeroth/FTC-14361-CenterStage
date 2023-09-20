@@ -1,7 +1,10 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
+import com.acmerobotics.dashboard.FtcDashboard;
+import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.arcrobotics.ftclib.gamepad.GamepadKeys.*;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.Subsystems.Mecanum;
 
@@ -11,14 +14,21 @@ public class FieldCentric extends OpMode
 {
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
-    private Mecanum drive;
+    private Mecanum driveTrain;
+    private Robot robot;
 
     public void init()
     {
         runTime = new ElapsedTime();
         driver = new GamepadEx(gamepad1);
         operator = new GamepadEx(gamepad2);
-        drive = new Mecanum(hardwareMap);
+        driveTrain = new Mecanum(hardwareMap);
+
+        FtcDashboard dashboard = FtcDashboard.getInstance();
+        telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
+
+        robot.resetEncoder();
+        robot.setZeroBehavior();
 
         telemetry.addLine("It's goobin time");
         telemetry.addLine("Time taken: " + getRuntime()+ " seconds.");
@@ -29,12 +39,15 @@ public class FieldCentric extends OpMode
     {
         driver.readButtons();
         operator.readButtons();
-        drive.drive(driver);
-        drive.setMotorPower();
+        driveTrain.drive(driver);
+        driveTrain.setMotorPower();
+
+        robot.initPID();
+
 
         if(driver.wasJustPressed(Button.LEFT_BUMPER))
         {
-            drive.setMotorSlowDownPower();
+            driveTrain.setMotorSlowDownPower();
         }
 
     }
