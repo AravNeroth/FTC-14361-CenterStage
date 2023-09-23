@@ -84,8 +84,11 @@ public class Mecanum{
         rightFront.setPower(rightFrontPower );
         rightRear.setPower(rightRearPower * offset);
     }
-    public void slowMotors(){
-
+    public void slowMotors(int offset){
+        leftFront.setPower(leftFrontPower * offset);
+        leftRear.setPower(leftRearPower * offset);
+        rightFront.setPower(rightFrontPower * offset);
+        rightRear.setPower(rightRearPower * offset);
     }
 
     public void resetIMU(){

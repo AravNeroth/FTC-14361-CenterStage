@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.Commands.State;
 
 public class intakeSlides {
     private DcMotorEx intakeSlides;
+    private State state;
 
     private int HIGHOUT = 0, MEDIUMOUT = 0, LOWOUT = 0, HIGHIN = 0, MEDIUMIN = 0, LOWIN=0;
     public intakeSlides(HardwareMap hardwareMap){
@@ -35,6 +36,9 @@ public class intakeSlides {
 
     public double getIntakeSlidesPosition(){
         return intakeSlides.getCurrentPosition();
+    }
+    public State getState(){
+        return state;
     }
 
 
