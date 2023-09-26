@@ -10,15 +10,13 @@ import org.firstinspires.ftc.teamcode.Subsystems.Mecanum;
 
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp
 
-public class FieldCentric extends OpMode
-{
+public class FieldCentric extends OpMode {
     private ElapsedTime runTime;
     private GamepadEx driver, operator;
     private Mecanum driveTrain;
     private Robot robot;
 
-    public void init()
-    {
+    public void init() {
         runTime = new ElapsedTime();
         driver = new GamepadEx(gamepad1);
         operator = new GamepadEx(gamepad2);
@@ -31,12 +29,10 @@ public class FieldCentric extends OpMode
         robot.setZeroBehavior();
 
         telemetry.addLine("It's goobin time");
-        telemetry.addLine("Time taken: " + getRuntime()+ " seconds.");
         telemetry.update();
     }
 
-    public void loop()
-    {
+    public void loop() {
         driver.readButtons();
         operator.readButtons();
         driveTrain.drive(driver);
@@ -44,19 +40,8 @@ public class FieldCentric extends OpMode
 
         robot.initPID();
 
-
-        if(driver.wasJustPressed(Button.LEFT_BUMPER))
-        {
+        if (driver.wasJustPressed(Button.LEFT_BUMPER)) {
             driveTrain.setMotorSlowDownPower();
         }
-
-    }
-
-    public void stop()
-    {
-        //dawg idk how to stop the damn robot
-        telemetry.addLine("Robot Stopped.");
-        telemetry.addLine("Total Runtime: " + getRuntime() + " seconds.");
-        telemetry.update();
     }
 }
