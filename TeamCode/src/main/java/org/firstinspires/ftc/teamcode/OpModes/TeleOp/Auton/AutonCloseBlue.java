@@ -42,7 +42,7 @@ public class AutonCloseBlue extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         int cameraMonitorViewID = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewID", "id", hardwareMap.appContext.getPackageName());
-        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "camera"), cameraMonitorViewID);
+        camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, "Webcam 1"), cameraMonitorViewID);
         bot = new Robot(hardwareMap, telemetry);
 
         pipeline = new AprilTagDetectionPipeline(tagsize,fx,fy,cx,cy);
@@ -61,7 +61,7 @@ public class AutonCloseBlue extends LinearOpMode {
             }
         });
 
-
+        telemetry.setMsTransmissionInterval(50);
 
 
         while (!isStarted() && !isStopRequested()) {
@@ -69,7 +69,7 @@ public class AutonCloseBlue extends LinearOpMode {
             if (currentDetections.size() != 0) {
                 boolean tagFound = false;
                 for(AprilTagDetection tag : currentDetections) {
-                    if(tag.id == BLUELEFT || tag.id == BLUEMID || tag.id == BLUERIGHT || tag.id == REDLEFT || tag.id== REDMID || tag.id ==REDRIGHT) {
+                    if(tag.id == BLUELEFT || tag.id == BLUEMID || tag.id == BLUERIGHT) {
                         tagOfInterest = tag;
                         tagFound = true;
                         break;
@@ -113,16 +113,16 @@ public class AutonCloseBlue extends LinearOpMode {
             telemetry.update();
         }
 
-        if(tagOfInterest.id == BLUELEFT){
-            telemetry.addLine("Blue Left");
-        }
-        else if(tagOfInterest.id == BLUEMID){
-            telemetry.addLine("Blue Mid");
-        }
-        else if(tagOfInterest.id == BLUERIGHT){
-            telemetry.addLine("Blue Right");
-        }
 
+        while(opModeIsActive()) {
+            if (tagOfInterest.id == BLUELEFT) {
+
+            } else if (tagOfInterest.id == BLUEMID) {
+                telemetry.addLine("Blue Mid");
+            } else if (tagOfInterest.id == BLUERIGHT) {
+                telemetry.addLine("Blue Right");
+            }
+        }
 
     }
     void tagToTelemetry(AprilTagDetection detection) {

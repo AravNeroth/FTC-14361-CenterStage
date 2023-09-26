@@ -35,10 +35,10 @@ public class Mecanum{
         // reverse the left side instead.
         // See the note about this earlier on this page.
 
-        leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+      //  leftFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //leftRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+       // rightRear.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+      // rightFront.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         leftFront.setDirection(DcMotorEx.Direction.REVERSE);
         leftRear.setDirection(DcMotorEx.Direction.REVERSE);

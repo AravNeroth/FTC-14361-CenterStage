@@ -17,14 +17,14 @@ public class Robot {
         drivetrain = new Mecanum(hardwareMap);
         claw = new Claw(hardwareMap);
         intakeSlides = new intakeSlides(hardwareMap);
-        outtakeSlides = new outtakeSlides(hardwareMap);
+        //outtakeSlides = new outtakeSlides(hardwareMap);
 
     }
 
     public void setPosition(State state){
 
         intakeSlides.setIntakeSlidesPosition(state);
-        outtakeSlides.setOuttakeSlidesPosition(state);
+        //outtakeSlides.setOuttakeSlidesPosition(state);
     }
 
 }

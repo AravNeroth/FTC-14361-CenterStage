@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.Commands.State;
 public class Claw {
     DcMotorEx claw;
     public Claw(HardwareMap hardwareMap){
-        claw = hardwareMap.get(DcMotorEx.class, "claw");
+      //  claw = hardwareMap.get(DcMotorEx.class, "claw");
 
     }
     public static void setPosition(State state){

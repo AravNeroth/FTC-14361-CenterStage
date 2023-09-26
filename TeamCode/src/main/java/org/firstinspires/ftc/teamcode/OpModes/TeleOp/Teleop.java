@@ -30,7 +30,7 @@ public class Teleop extends OpMode {
         sentry = new GamepadEx(gamepad2);
         claw = new Claw(hardwareMap);
         intakeSlides = new intakeSlides(hardwareMap);
-        outtakeSlides = new outtakeSlides(hardwareMap);
+        //outtakeSlides = new outtakeSlides(hardwareMap);
 
 
         // pid = new PID(hardwareMap);

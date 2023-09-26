@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.Commands.State;
 import org.firstinspires.ftc.teamcode.utilities.robotConstants;
 
 public class outtakeSlides {
-    private DcMotorEx outtakeSlides;
+  /*  private DcMotorEx outtakeSlides;
     private int HIGHOUT = 0, MEDIUMOUT = 0, LOWOUT = 0, HIGHIN = 0, MEDIUMIN = 0, LOWIN=0;
     robotConstants gronk = new robotConstants();
 
@@ -42,5 +42,5 @@ public class outtakeSlides {
         //return robotConstants.Arm.intake;
 
     }
-
+*/
 }
