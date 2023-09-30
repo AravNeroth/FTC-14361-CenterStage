@@ -29,7 +29,6 @@ public class IntakeSlide
         // Will change depending on the target.
         ticks_in_degrees = 0.0;
         // Will change depending on the motor used.
-
     }
 
     public void resetEncoder()
@@ -61,7 +60,7 @@ public class IntakeSlide
 
     public double getPosition()
     {
-        return intakeMotor.getTargetPosition();
+        return intakeMotor.getCurrentPosition();
     }
 
     public void setPosition(State state, IntakeState extendState)

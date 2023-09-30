@@ -53,10 +53,8 @@ public class Claw implements Subsystem
         // Will change variables later
     }
 
-    public int getPosition()
-    {
-
-    }
+    //public int getPosition()
+   // {}
 
     public void setPosition(State state) {
         switch(state) {

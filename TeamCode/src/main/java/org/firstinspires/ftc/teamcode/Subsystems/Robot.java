@@ -14,7 +14,7 @@ public class Robot
     public OuttakeSlide outtakeSlide;
     public Mecanum drivetrain;
     private State state;
-
+    private OuttakeState outtakeState;
     private IntakeState intakeState;
     public Arm arm;
     Telemetry telemetry;
@@ -59,6 +59,21 @@ public class Robot
         this.intakeState = intakeState;
     }
 
+    public void setOuttakeState(OuttakeState outtakeState)
+    {
+        this.outtakeState = outtakeState;
+    }
+
+    public IntakeState getIntakeState()
+    {
+        return intakeState;
+    }
+
+    public OuttakeState getOuttakeState()
+    {
+        return outtakeState;
+    }
+
     public void setState(State state)
     {
         this.state = state;
@@ -69,8 +84,4 @@ public class Robot
         return state;
     }
 
-    public IntakeState getIntakeState()
-    {
-        return intakeState;
-    }
 }

@@ -5,6 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.Commands.IntakeState;
+import org.firstinspires.ftc.teamcode.Commands.OuttakeState;
 import org.firstinspires.ftc.teamcode.Commands.State;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
@@ -19,8 +21,6 @@ public class OuttakeSlide
     {
         leftOuttakeMotor = hardwareMap.get(DcMotorEx.class, "leftIntakeMotor");
         rightOuttakeMotor = hardwareMap.get(DcMotorEx.class, "rightIntakeMotor");
-
-        outtakeMotors = (leftOuttakeMotor.getCurrentPosition() + rightOuttakeMotor.getCurrentPosition())/2;
 
         P = RobotConstants.IntakeSlide.P;
         I = RobotConstants.IntakeSlide.I;
@@ -44,13 +44,17 @@ public class OuttakeSlide
         rightOuttakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void initPID()
+    public void initPID() {
+        outtakePID = new PIDController(P, I, D);
+
+        outtakePID.setPID(P, I, D);
+    }
+
+    public void setPIDMotorPower(int target)
     {
-        outtakePID = new PIDController(P,I,D);
+        outtakeMotors = (leftOuttakeMotor.getCurrentPosition() + rightOuttakeMotor.getCurrentPosition())/2;
 
-        outtakePID.setPID(P,I,D);
-
-        double motorPosition = outtakeMotors;
+        int motorPosition = outtakeMotors;
 
         double PID = outtakePID.calculate(motorPosition, target);
 
@@ -59,8 +63,36 @@ public class OuttakeSlide
         leftOuttakeMotor.setPower(power);
         rightOuttakeMotor.setPower(power);
     }
-    public void setPosition(State state)
-    {
 
+    public double getPosition()
+    {
+        return leftOuttakeMotor.getCurrentPosition() & rightOuttakeMotor.getCurrentPosition();
+    }
+
+    public void setPosition(State state, OuttakeState extendState)
+    {
+        switch(extendState)
+        {
+            case STATION:
+                setPIDMotorPower(0);
+                break;
+            case EXTENDING:
+                if(state.equals(state.HIGHOUT))
+                {
+                    setPIDMotorPower(RobotConstants.OuttakeSlide.HIGH);
+                }
+                else if(state.equals(state.MEDIUMOUT))
+                {
+                    setPIDMotorPower(RobotConstants.OuttakeSlide.MEDIUM);
+                }
+                else if(state.equals(state.LOWOUT))
+                {
+                    setPIDMotorPower(RobotConstants.OuttakeSlide.LOW);
+                }
+                break;
+            case EXTEND:
+                break;
+
+        }
     }
 }
