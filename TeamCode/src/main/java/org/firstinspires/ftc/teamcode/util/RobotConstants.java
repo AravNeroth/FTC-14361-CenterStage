@@ -14,7 +14,6 @@ public class RobotConstants
         public static int HIGH = 0;
         public static int MEDIUM = 0;
         public static int LOW = 0;
-        public static int GROUND = 0;
     }
 
     public static class IntakeSlide
@@ -29,7 +28,6 @@ public class RobotConstants
         public static int HIGH = 0;
         public static int MEDIUM = 0;
         public static int LOW = 0;
-        public static int GROUND = 0;
     }
 
     public static class Claw

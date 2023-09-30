@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Commands.IntakeState;
+import org.firstinspires.ftc.teamcode.Commands.OuttakeState;
 import org.firstinspires.ftc.teamcode.Commands.State;
 
 public class Robot
@@ -12,10 +14,13 @@ public class Robot
     public OuttakeSlide outtakeSlide;
     public Mecanum drivetrain;
     private State state;
+
+    private IntakeState intakeState;
     public Arm arm;
     Telemetry telemetry;
 
-    public Robot(HardwareMap hardwareMap, Telemetry telemetry) {
+    public Robot(HardwareMap hardwareMap, Telemetry telemetry)
+    {
         this.telemetry = telemetry;
 
         drivetrain = new Mecanum(hardwareMap);
@@ -23,14 +28,13 @@ public class Robot
         claw = new Claw(hardwareMap);
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
-        state = state.LOWIN;
     }
 
-    public void setPosition(State state) {
+    public void setPosition(State state, IntakeState inExtendState, OuttakeState outtakeExtendState) {
         claw.setPosition(state);
         arm.setPosition(state);
-        outtakeSlide.setPosition(state);
-        intakeSlide.setPosition(state);
+        outtakeSlide.setPosition(state, outtakeExtendState);
+        intakeSlide.setPosition(state, inExtendState);
     }
 
     public void resetEncoder()
@@ -50,8 +54,23 @@ public class Robot
         intakeSlide.initPID();
     }
 
+    public void setIntakeState(IntakeState intakeState)
+    {
+        this.intakeState = intakeState;
+    }
+
+    public void setState(State state)
+    {
+        this.state = state;
+    }
+
     public State getState()
     {
         return state;
+    }
+
+    public IntakeState getIntakeState()
+    {
+        return intakeState;
     }
 }

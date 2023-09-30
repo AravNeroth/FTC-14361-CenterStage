@@ -27,26 +27,35 @@ public class Claw implements Subsystem
         // Will change variables later
     }
 
-    public void open() {
+    public void open()
+    {
         leftHand.setPosition(RobotConstants.Claw.deposit);
         rightHand.setPosition(RobotConstants.Claw.deposit);
         // Will change variables later
     }
 
-    public void leftClose() {
+    public void leftClose()
+    {
         leftHand.setPosition(RobotConstants.Claw.close);
         // Will change variables later
     }
 
-    public void rightClose() {
+    public void rightClose()
+    {
         rightHand.setPosition(RobotConstants.Claw.close);
         // Will change variables later
     }
 
-    public void close() {
+    public void close()
+    {
         leftHand.setPosition(RobotConstants.Claw.close);
         rightHand.setPosition(RobotConstants.Claw.close);
         // Will change variables later
+    }
+
+    public int getPosition()
+    {
+
     }
 
     public void setPosition(State state) {
