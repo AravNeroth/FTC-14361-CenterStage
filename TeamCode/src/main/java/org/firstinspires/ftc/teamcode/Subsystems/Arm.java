@@ -33,7 +33,8 @@ public class Arm implements Subsystem
 
     public void setPosition(State state)
     {
-        switch(state) {
+        switch(state)
+        {
             case HIGHIN:
             case MEDIUMIN:
             case LOWIN:
@@ -43,5 +44,9 @@ public class Arm implements Subsystem
             default:
                 setArmIntaking();
         }
+    }
+    public leftArm getLeftArmPosition()
+    {
+        return leftArm.getPosition()
     }
 }

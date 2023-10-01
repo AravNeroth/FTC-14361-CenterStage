@@ -12,14 +12,14 @@ import org.firstinspires.ftc.teamcode.util.RobotConstants;
 public class IntakeSlide
 {
     private PIDController intakePID;
-    private DcMotorEx intakeMotor;
+    private DcMotorEx intakeSlideMotor;
     private int target;
     private double P, I, D, ticks_in_degrees;
 
 
     public IntakeSlide(HardwareMap hardwareMap)
     {
-        intakeMotor = hardwareMap.get(DcMotorEx.class, "intakeMotor");
+        intakeSlideMotor = hardwareMap.get(DcMotorEx.class, "intakeSlideMotor");
 
         P = RobotConstants.IntakeSlide.P;
         I = RobotConstants.IntakeSlide.I;
@@ -33,15 +33,16 @@ public class IntakeSlide
 
     public void resetEncoder()
     {
-        intakeMotor.setMode((DcMotor.RunMode.STOP_AND_RESET_ENCODER));
+        intakeSlideMotor.setMode((DcMotor.RunMode.STOP_AND_RESET_ENCODER));
     }
 
     public void setZeroBehavior()
     {
-        intakeMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 
-    public void initPID() {
+    public void initPID()
+    {
         intakePID = new PIDController(P, I, D);
 
         intakePID.setPID(P, I, D);
@@ -49,18 +50,18 @@ public class IntakeSlide
 
     public void setPIDMotorPower(int target)
     {
-        int motorPosition = intakeMotor.getCurrentPosition();
+        int motorPosition = intakeSlideMotor.getCurrentPosition();
 
         double PID = intakePID.calculate(motorPosition, target);
 
         double power = PID;
 
-        intakeMotor.setPower(power);
+        intakeSlideMotor.setPower(power);
     }
 
     public double getPosition()
     {
-        return intakeMotor.getCurrentPosition();
+        return intakeSlideMotor.getCurrentPosition();
     }
 
     public void setPosition(State state, IntakeState extendState)

@@ -34,8 +34,12 @@ public class RobotConstants
     {
         public static double intakeAuto = 0.0;
         public static double intakeTeleOp = 0.0;
-        public static double close = 0.0;
-        public static double deposit = 0.0;
+        public static double leftClose = 0.0;
+        public static double rightClose = 0.0;
+        public static double leftOpen = 0.0;
+        public static double rightOpen = 0.0;
+        public static double outWristRotation = 0.0;
+        public static double sideWristRotation = 0.0;
     }
 
     public static class Arm

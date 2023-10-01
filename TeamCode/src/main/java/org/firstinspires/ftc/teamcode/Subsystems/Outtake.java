@@ -33,8 +33,11 @@ public class Outtake
                 break;
             case EXTEND:
                 activeIntake.activateActiveMotor();
-                // if(claw.getPosition() )
-                    break;
+                if(claw.() )
+                {
+
+                }
+                break;
         }
     }
 }

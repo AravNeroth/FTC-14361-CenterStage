@@ -3,12 +3,13 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Commands.ClawState;
 import org.firstinspires.ftc.teamcode.Commands.IntakeState;
 import org.firstinspires.ftc.teamcode.Commands.OuttakeState;
 import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.WristState;
 
-public class Robot
-{
+public class Robot {
     public Claw claw;
     public IntakeSlide intakeSlide;
     public OuttakeSlide outtakeSlide;
@@ -16,11 +17,12 @@ public class Robot
     private State state;
     private OuttakeState outtakeState;
     private IntakeState intakeState;
+    private WristState wristState;
+    private ClawState clawState;
     public Arm arm;
     Telemetry telemetry;
 
-    public Robot(HardwareMap hardwareMap, Telemetry telemetry)
-    {
+    public Robot(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
 
         drivetrain = new Mecanum(hardwareMap);
@@ -28,6 +30,7 @@ public class Robot
         claw = new Claw(hardwareMap);
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
+        clawState = ClawState.CLOSEDCLAW;
     }
 
     public void setPosition(State state, IntakeState inExtendState, OuttakeState outtakeExtendState) {
@@ -48,6 +51,7 @@ public class Robot
         outtakeSlide.setZeroBehavior();
         intakeSlide.setZeroBehavior();
     }
+
     public void initPID()
     {
         outtakeSlide.initPID();
@@ -59,19 +63,39 @@ public class Robot
         this.intakeState = intakeState;
     }
 
-    public void setOuttakeState(OuttakeState outtakeState)
-    {
-        this.outtakeState = outtakeState;
-    }
-
     public IntakeState getIntakeState()
     {
         return intakeState;
     }
 
+    public void setOuttakeState(OuttakeState outtakeState)
+    {
+        this.outtakeState = outtakeState;
+    }
+
     public OuttakeState getOuttakeState()
     {
         return outtakeState;
+    }
+
+    public void setWristState(WristState wristState)
+    {
+        this.wristState = wristState;
+    }
+
+    public WristState getWristState()
+    {
+        return wristState;
+    }
+
+    public void setClawState(ClawState clawState)
+    {
+        this.clawState = clawState;
+    }
+
+    public ClawState getClawState()
+    {
+        return getClawState();
     }
 
     public void setState(State state)

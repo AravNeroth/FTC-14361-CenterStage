@@ -17,6 +17,16 @@ public class Claw implements Subsystem
 
     }
 
+    public void inWristRotation()
+    {
+        wrist.setPosition(RobotConstants.Claw.inWristRotation);
+    }
+
+    public void outWristRotation()
+    {
+
+    }
+
     public void leftOpen() {
         leftHand.setPosition(RobotConstants.Claw.deposit);
         // Will change variables later
@@ -53,10 +63,8 @@ public class Claw implements Subsystem
         // Will change variables later
     }
 
-    //public int getPosition()
-   // {}
-
-    public void setPosition(State state) {
+    public void setPosition(State state)
+    {
         switch(state) {
             case HIGHIN:
             case MEDIUMIN:
@@ -68,4 +76,30 @@ public class Claw implements Subsystem
                 close();
         }
     }
+
+    public double getLeftHandPosition()
+    {
+        return leftHand.getPosition();
+    }
+
+    public double getRightHandPosition()
+    {
+        return rightHand.getPosition();
+    }
+
+    public void setWristOutPosition()
+    {
+        wrist.setPosition(RobotConstants.Claw.outWristRotation);
+    }
+
+    public void setWristSidePosition()
+    {
+        wrist.setPosition(RobotConstants.Claw.sideWristRotation);
+    }
+
+    public double getWristPosition()
+    {
+        return wrist.getPosition();
+    }
+
 }
