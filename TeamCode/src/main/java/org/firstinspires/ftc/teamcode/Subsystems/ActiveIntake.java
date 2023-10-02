@@ -14,7 +14,7 @@ public class ActiveIntake
 
     public void activateActiveMotor()
     {
-        activeMotor.setPower(1);
+        activeMotor.setPower(0.5);
     }
 
     public void deactivateActiveMotor()

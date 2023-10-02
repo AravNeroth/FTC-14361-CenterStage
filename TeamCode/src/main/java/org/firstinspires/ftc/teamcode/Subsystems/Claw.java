@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
-import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.ClawState;
+import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 import com.arcrobotics.ftclib.command.Subsystem;
@@ -17,30 +18,32 @@ public class Claw implements Subsystem
 
     }
 
-    public void inWristRotation()
+    public void sideWristRotation()
     {
-        wrist.setPosition(RobotConstants.Claw.inWristRotation);
+        wrist.setPosition(RobotConstants.Claw.sideWristRotation);
     }
 
     public void outWristRotation()
     {
-
+        wrist.setPosition(RobotConstants.Claw.outWristRotation);
     }
 
-    public void leftOpen() {
-        leftHand.setPosition(RobotConstants.Claw.deposit);
+    public void leftOpen()
+    {
+        leftHand.setPosition(RobotConstants.Claw.open);
         // Will change variables later
     }
 
-    public void rightOpen() {
-        rightHand.setPosition(RobotConstants.Claw.deposit);
+    public void rightOpen()
+    {
+        rightHand.setPosition(RobotConstants.Claw.open);
         // Will change variables later
     }
 
     public void open()
     {
-        leftHand.setPosition(RobotConstants.Claw.deposit);
-        rightHand.setPosition(RobotConstants.Claw.deposit);
+        leftHand.setPosition(RobotConstants.Claw.open);
+        rightHand.setPosition(RobotConstants.Claw.open);
         // Will change variables later
     }
 
@@ -63,15 +66,16 @@ public class Claw implements Subsystem
         // Will change variables later
     }
 
-    public void setPosition(State state)
+    public void setPosition(ClawState clawState)
     {
-        switch(state) {
-            case HIGHIN:
-            case MEDIUMIN:
-            case LOWIN:
-            case HIGHOUT:
-            case MEDIUMOUT:
-            case LOWOUT:
+        switch(clawState) {
+            case CLOSEDCLAW:
+
+            case LEFTCLOSE:
+            case RIGHTCLOSE:
+            case OPENCLAW:
+            case LEFTOPEN:
+            case RIGHTOPEN:
             default:
                 close();
         }

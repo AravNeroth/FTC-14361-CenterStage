@@ -3,10 +3,11 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.teamcode.Commands.ArmState;
 import org.firstinspires.ftc.teamcode.Commands.ClawState;
-import org.firstinspires.ftc.teamcode.Commands.IntakeState;
-import org.firstinspires.ftc.teamcode.Commands.OuttakeState;
-import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.IntakeExtendState;
+import org.firstinspires.ftc.teamcode.Commands.OuttakeExtendState;
+import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.WristState;
 
 public class Robot {
@@ -14,12 +15,16 @@ public class Robot {
     public IntakeSlide intakeSlide;
     public OuttakeSlide outtakeSlide;
     public Mecanum drivetrain;
-    private State state;
-    private OuttakeState outtakeState;
-    private IntakeState intakeState;
+    private ExtensionState state;
+    private OuttakeExtendState outtakeState;
+    private IntakeExtendState intakeState;
     private WristState wristState;
     private ClawState clawState;
-    public Arm arm;
+    private ArmState armState;
+    private Arm arm;
+    private Intake intake;
+    private Outtake outtake;
+
     Telemetry telemetry;
 
     public Robot(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -30,14 +35,17 @@ public class Robot {
         claw = new Claw(hardwareMap);
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
+        intake = new Intake(hardwareMap, telemetry);
+        outtake = new Outtake(hardwareMap, telemetry);
+
+        armState = ArmState.INTAKING;
         clawState = ClawState.CLOSEDCLAW;
+
     }
 
-    public void setPosition(State state, IntakeState inExtendState, OuttakeState outtakeExtendState) {
-        claw.setPosition(state);
-        arm.setPosition(state);
-        outtakeSlide.setPosition(state, outtakeExtendState);
-        intakeSlide.setPosition(state, inExtendState);
+    public void setPosition(ExtensionState extendState, IntakeExtendState inExtendState, OuttakeExtendState outExtendState) {
+        intake.setPosition(extendState, inExtendState);
+        outtake.setPosition(extendState, outExtendState);
     }
 
     public void resetEncoder()
@@ -58,22 +66,22 @@ public class Robot {
         intakeSlide.initPID();
     }
 
-    public void setIntakeState(IntakeState intakeState)
+    public void setIntakeState(IntakeExtendState intakeState)
     {
         this.intakeState = intakeState;
     }
 
-    public IntakeState getIntakeState()
+    public IntakeExtendState getIntakeState()
     {
         return intakeState;
     }
 
-    public void setOuttakeState(OuttakeState outtakeState)
+    public void setOuttakeState(OuttakeExtendState outtakeState)
     {
         this.outtakeState = outtakeState;
     }
 
-    public OuttakeState getOuttakeState()
+    public OuttakeExtendState getOuttakeState()
     {
         return outtakeState;
     }
@@ -98,12 +106,22 @@ public class Robot {
         return getClawState();
     }
 
-    public void setState(State state)
+    public void setArmState(ArmState armState)
+    {
+        this.armState = armState;
+    }
+
+    public ArmState getArmState()
+    {
+        return armState;
+    }
+
+    public void setState(ExtensionState state)
     {
         this.state = state;
     }
 
-    public State getState()
+    public ExtensionState getState()
     {
         return state;
     }

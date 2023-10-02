@@ -5,9 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Commands.IntakeState;
-import org.firstinspires.ftc.teamcode.Commands.OuttakeState;
-import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.OuttakeExtendState;
+import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 public class OuttakeSlide
@@ -69,28 +68,24 @@ public class OuttakeSlide
         return leftOuttakeMotor.getCurrentPosition() & rightOuttakeMotor.getCurrentPosition();
     }
 
-    public void setPosition(State state, OuttakeState extendState)
+    public void setPosition(ExtensionState extendState, OuttakeExtendState outExtendState)
     {
-        switch(extendState)
+        switch(outExtendState)
         {
-            case STATION:
-                setPIDMotorPower(0);
+            case GROUND:
+                setPIDMotorPower(RobotConstants.OuttakeSlide.GROUND);
                 break;
             case EXTENDING:
-                if(state.equals(state.HIGHOUT))
+                if(extendState.equals(extendState.HIGHOUT))
                 {
                     setPIDMotorPower(RobotConstants.OuttakeSlide.HIGH);
                 }
-                else if(state.equals(state.MEDIUMOUT))
+                else if(extendState.equals(extendState.MEDIUMOUT))
                 {
                     setPIDMotorPower(RobotConstants.OuttakeSlide.MEDIUM);
                 }
-                else if(state.equals(state.LOWOUT))
-                {
-                    setPIDMotorPower(RobotConstants.OuttakeSlide.LOW);
-                }
                 break;
-            case EXTEND:
+            case EXTENDED:
                 break;
 
         }

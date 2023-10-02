@@ -5,8 +5,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.Commands.IntakeState;
-import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.IntakeExtendState;
+import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 public class IntakeSlide
@@ -64,30 +64,23 @@ public class IntakeSlide
         return intakeSlideMotor.getCurrentPosition();
     }
 
-    public void setPosition(State state, IntakeState extendState)
+    public void setPosition(ExtensionState extendState, IntakeExtendState inExtendState)
     {
-        switch(extendState)
+        switch(inExtendState)
         {
             case STATION:
-                setPIDMotorPower(0);
+                setPIDMotorPower(RobotConstants.IntakeSlide.STATION);
                 break;
             case EXTENDING:
-                if(state.equals(state.HIGHIN))
+                if(extendState.equals(extendState.HIGHIN))
                 {
                     setPIDMotorPower(RobotConstants.IntakeSlide.HIGH);
                 }
-                else if(state.equals(state.MEDIUMIN))
+                else if(extendState.equals(extendState.MEDIUMIN))
                 {
                     setPIDMotorPower(RobotConstants.IntakeSlide.MEDIUM);
                 }
-                else if(state.equals(state.LOWIN))
-                {
-                    setPIDMotorPower(RobotConstants.IntakeSlide.LOW);
-                }
                 break;
-            case EXTEND:
-                break;
-
         }
     }
 }

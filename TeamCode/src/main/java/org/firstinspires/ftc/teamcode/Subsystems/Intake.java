@@ -2,10 +2,11 @@ package org.firstinspires.ftc.teamcode.Subsystems;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
-import org.firstinspires.ftc.teamcode.Commands.IntakeState;
-import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.ArmState;
+import org.firstinspires.ftc.teamcode.Commands.ClawState;
+import org.firstinspires.ftc.teamcode.Commands.IntakeExtendState;
+import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
 import org.firstinspires.ftc.teamcode.Commands.WristState;
-import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 public class Intake
 {
@@ -25,7 +26,7 @@ public class Intake
 
     }
 
-    public void setPosition(State state, IntakeState extendState) {
+    public void setPosition(ExtensionState state, IntakeExtendState extendState) {
         switch(extendState)
         {
             case EXTENDING:
@@ -33,26 +34,28 @@ public class Intake
 
                 if(intakeSlide.getPosition()>=0.0)
                 {
-                    bot.setIntakeState(extendState.EXTEND);
+                    bot.setIntakeState(extendState.EXTENDED);
                 }
 
-            case EXTEND:
+            case EXTENDED:
                 activeIntake.activateActiveMotor();
-                if(bot.getWristState() != WristState.outWrist && claw.getLeftHandPosition() != RobotConstants.Claw.leftOpen && claw.getRightHandPosition() != RobotConstants.Claw.rightOpen && arm.get)
+                if(bot.getArmState() != ArmState.INTAKING)
                 {
                     arm.setArmIntaking();
+                }
+                if(bot.getWristState() != WristState.OUTWRIST)
+                {
                     claw.setWristOutPosition();
                 }
-                else if()
+                if((bot.getClawState() != ClawState.OPENCLAW)||(bot.getClawState() != ClawState.LEFTOPEN)||(bot.getClawState() != ClawState.RIGHTOPEN))
                 {
-
+                    claw.leftOpen();
+                    claw.rightOpen();
                 }
                 break;
-            case CONTRACT:
-                if()
-                {
-
-                }
+            case RETRACT:
+                activeIntake.deactivateActiveMotor();
+                intakeSlide.setPosition(state, extendState);
                 break;
         }
     }

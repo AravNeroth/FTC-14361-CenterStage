@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
-import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.ArmState;
+import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -19,34 +20,41 @@ public class Arm implements Subsystem
 
     public void setArmIntaking()
     {
-        leftArm.setPosition(0.0);
-        rightArm.setPosition(0.0);
+        leftArm.setPosition(RobotConstants.Arm.intake);
+        rightArm.setPosition(RobotConstants.Arm.intake);
         //Will change later.
     }
 
     public void setArmOutaking()
     {
-        leftArm.setPosition(0.0);
-        rightArm.setPosition(0.0);
+        leftArm.setPosition(RobotConstants.Arm.outtake);
+        rightArm.setPosition(RobotConstants.Arm.outtake);
         //Will change later.
     }
 
-    public void setPosition(State state)
+    public void setPosition(ArmState armState)
     {
-        switch(state)
+        switch(armState)
         {
-            case HIGHIN:
-            case MEDIUMIN:
-            case LOWIN:
-            case HIGHOUT:
-            case MEDIUMOUT:
-            case LOWOUT:
+            case INTAKING:
+
             default:
                 setArmIntaking();
         }
     }
-    public leftArm getLeftArmPosition()
+
+    public double getLeftArmPosition()
     {
-        return leftArm.getPosition()
+        return leftArm.getPosition();
+    }
+
+    public double getRightArmPosition()
+    {
+        return rightArm.getPosition();
+    }
+
+    public double getArmPosition()
+    {
+        return (leftArm.getPosition() + rightArm.getPosition())/2;
     }
 }

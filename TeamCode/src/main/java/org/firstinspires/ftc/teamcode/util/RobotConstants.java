@@ -13,7 +13,7 @@ public class RobotConstants
 
         public static int HIGH = 0;
         public static int MEDIUM = 0;
-        public static int LOW = 0;
+        public static int GROUND = 0;
     }
 
     public static class IntakeSlide
@@ -27,17 +27,15 @@ public class RobotConstants
         
         public static int HIGH = 0;
         public static int MEDIUM = 0;
-        public static int LOW = 0;
+        public static int STATION = 0;
     }
 
     public static class Claw
     {
         public static double intakeAuto = 0.0;
         public static double intakeTeleOp = 0.0;
-        public static double leftClose = 0.0;
-        public static double rightClose = 0.0;
-        public static double leftOpen = 0.0;
-        public static double rightOpen = 0.0;
+        public static double close = 0.0;
+        public static double open = 0.0;
         public static double outWristRotation = 0.0;
         public static double sideWristRotation = 0.0;
     }
@@ -46,5 +44,11 @@ public class RobotConstants
     {
         public static double outtake = 0.0;
         public static double intake = 0.0;
+    }
+
+    public static class ActiveIntake
+    {
+        public static int active = 0;
+        public static int deactivate = 0;
     }
 }
