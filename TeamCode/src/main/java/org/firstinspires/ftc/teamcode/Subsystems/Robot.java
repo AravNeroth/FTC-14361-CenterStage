@@ -24,7 +24,7 @@ public class Robot {
     private Arm arm;
     private Intake intake;
     private Outtake outtake;
-
+    private ActiveIntake activeIntake;
     Telemetry telemetry;
 
     public Robot(HardwareMap hardwareMap, Telemetry telemetry) {
@@ -33,11 +33,13 @@ public class Robot {
         drivetrain = new Mecanum(hardwareMap);
         arm = new Arm(hardwareMap);
         claw = new Claw(hardwareMap);
+        activeIntake = new ActiveIntake(hardwareMap);
         outtakeSlide = new OuttakeSlide(hardwareMap);
         intakeSlide = new IntakeSlide(hardwareMap);
         intake = new Intake(hardwareMap, telemetry);
         outtake = new Outtake(hardwareMap, telemetry);
 
+        activeIntake.deactivateActiveMotor();
         armState = ArmState.INTAKING;
         clawState = ClawState.CLOSEDCLAW;
 

@@ -53,7 +53,7 @@ public class Intake
                     claw.rightOpen();
                 }
                 break;
-            case RETRACT:
+            case STATION:
                 activeIntake.deactivateActiveMotor();
                 intakeSlide.setPosition(state, extendState);
                 break;

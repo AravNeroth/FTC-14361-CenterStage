@@ -37,19 +37,18 @@ public class Outtake
                 }
 
             case EXTENDED:
-                activeIntake.activateActiveMotor();
-                if(bot.getArmState() != ArmState.INTAKING)
+                if(bot.getWristState() != WristState.SIDEWRIST)
+                {
+                    claw.setWristSidePosition();
+                }
+                if(bot.getArmState() != ArmState.OUTTAKING)
                 {
                     arm.setArmIntaking();
                 }
-                if(bot.getWristState() != WristState.OUTWRIST)
+                if((bot.getClawState() != ClawState.CLOSEDCLAW)||(bot.getClawState() != ClawState.LEFTCLOSE)||(bot.getClawState() != ClawState.RIGHTCLOSE))
                 {
-                    claw.setWristOutPosition();
-                }
-                if((bot.getClawState() != ClawState.OPENCLAW)||(bot.getClawState() != ClawState.LEFTOPEN)||(bot.getClawState() != ClawState.RIGHTOPEN))
-                {
-                    claw.leftOpen();
-                    claw.rightOpen();
+                    claw.leftClose();
+                    claw.rightClose();
                 }
                 break;
             case GROUND:
