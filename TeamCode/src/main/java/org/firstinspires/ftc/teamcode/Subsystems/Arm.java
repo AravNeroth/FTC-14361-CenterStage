@@ -25,7 +25,7 @@ public class Arm implements Subsystem
         //Will change later.
     }
 
-    public void setArmOutaking()
+    public void setArmOuttaking()
     {
         leftArm.setPosition(RobotConstants.Arm.outtake);
         rightArm.setPosition(RobotConstants.Arm.outtake);

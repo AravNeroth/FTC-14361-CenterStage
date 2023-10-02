@@ -66,21 +66,6 @@ public class Claw implements Subsystem
         // Will change variables later
     }
 
-    public void setPosition(ClawState clawState)
-    {
-        switch(clawState) {
-            case CLOSEDCLAW:
-
-            case LEFTCLOSE:
-            case RIGHTCLOSE:
-            case OPENCLAW:
-            case LEFTOPEN:
-            case RIGHTOPEN:
-            default:
-                close();
-        }
-    }
-
     public double getLeftHandPosition()
     {
         return leftHand.getPosition();

@@ -23,7 +23,6 @@ public class Intake
         claw = new Claw(hardwareMap);
         bot = new Robot(hardwareMap, telemetry);
         activeIntake = new ActiveIntake(hardwareMap);
-
     }
 
     public void setPosition(ExtensionState state, IntakeExtendState extendState) {
@@ -31,6 +30,7 @@ public class Intake
         {
             case EXTENDING:
                 intakeSlide.setPosition(state, extendState);
+                activeIntake.activateActiveMotor();
 
                 if(intakeSlide.getPosition()>=0.0)
                 {
@@ -38,7 +38,6 @@ public class Intake
                 }
 
             case EXTENDED:
-                activeIntake.activateActiveMotor();
                 if(bot.getArmState() != ArmState.INTAKING)
                 {
                     arm.setArmIntaking();
@@ -49,8 +48,7 @@ public class Intake
                 }
                 if((bot.getClawState() != ClawState.OPENCLAW)||(bot.getClawState() != ClawState.LEFTOPEN)||(bot.getClawState() != ClawState.RIGHTOPEN))
                 {
-                    claw.leftOpen();
-                    claw.rightOpen();
+                    claw.close();
                 }
                 break;
             case STATION:

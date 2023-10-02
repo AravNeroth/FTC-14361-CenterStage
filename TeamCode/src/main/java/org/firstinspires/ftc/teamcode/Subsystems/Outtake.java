@@ -29,6 +29,15 @@ public class Outtake
         switch(extendState)
         {
             case EXTENDING:
+                if(bot.getWristState() != WristState.SIDEWRIST)
+                {
+                    claw.setWristSidePosition();
+                }
+                if(bot.getArmState() != ArmState.OUTTAKING)
+                {
+                    arm.setArmOuttaking();
+                }
+
                 outtakeSlide.setPosition(state, extendState);
 
                 if(outtakeSlide.getPosition()>=0.0)
@@ -37,23 +46,13 @@ public class Outtake
                 }
 
             case EXTENDED:
-                if(bot.getWristState() != WristState.SIDEWRIST)
-                {
-                    claw.setWristSidePosition();
-                }
-                if(bot.getArmState() != ArmState.OUTTAKING)
-                {
-                    arm.setArmIntaking();
-                }
-                if((bot.getClawState() != ClawState.CLOSEDCLAW)||(bot.getClawState() != ClawState.LEFTCLOSE)||(bot.getClawState() != ClawState.RIGHTCLOSE))
-                {
-                    claw.leftClose();
-                    claw.rightClose();
-                }
                 break;
             case GROUND:
                 activeIntake.deactivateActiveMotor();
                 outtakeSlide.setPosition(state, extendState);
+                claw.setWristSidePosition();
+                arm.setArmIntaking();
+                claw.setWristOutPosition();
                 break;
         }
     }
