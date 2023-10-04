@@ -25,8 +25,9 @@ public class Outtake
         bot = new Robot(hardwareMap, telemetry);
     }
 
-    public void setPosition(ExtensionState state, OuttakeExtendState extendState) {
-        switch(extendState)
+    public void setPosition(ExtensionState extendState, OuttakeExtendState outtakeExtendState)
+    {
+        switch(outtakeExtendState)
         {
             case EXTENDING:
                 if(bot.getWristState() != WristState.SIDEWRIST)
@@ -38,18 +39,18 @@ public class Outtake
                     arm.setArmOuttaking();
                 }
 
-                outtakeSlide.setPosition(state, extendState);
+                outtakeSlide.setPosition(extendState, outtakeExtendState);
 
                 if(outtakeSlide.getPosition()>=0.0)
                 {
-                    bot.setOuttakeState(extendState.EXTENDED);
+                    bot.setOuttakeState(outtakeExtendState.EXTENDED);
                 }
 
             case EXTENDED:
                 break;
             case GROUND:
                 activeIntake.deactivateActiveMotor();
-                outtakeSlide.setPosition(state, extendState);
+                outtakeSlide.setPosition(extendState, outtakeExtendState);
                 claw.setWristSidePosition();
                 arm.setArmIntaking();
                 claw.setWristOutPosition();

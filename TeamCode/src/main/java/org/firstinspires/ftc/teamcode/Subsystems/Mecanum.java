@@ -15,7 +15,7 @@ public class Mecanum implements Subsystem
     BNO055IMU imu;
 
     BNO055IMU.Parameters parameters;
-    public Mecanum (HardwareMap hardwareMap)
+    public Mecanum(HardwareMap hardwareMap)
     {
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
@@ -39,7 +39,7 @@ public class Mecanum implements Subsystem
         imu.initialize(parameters);
     }
 
-    public void drive (GamepadEx gamepad1)
+    public void drive(GamepadEx gamepad1)
     {
         y = gamepad1.getLeftY();
         x = gamepad1.getLeftX();

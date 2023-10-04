@@ -1,6 +1,4 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
-import org.firstinspires.ftc.teamcode.Commands.ClawState;
-import org.firstinspires.ftc.teamcode.Commands.ExtensionState;
 import org.firstinspires.ftc.teamcode.util.RobotConstants;
 
 import com.arcrobotics.ftclib.command.Subsystem;

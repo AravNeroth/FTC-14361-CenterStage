@@ -52,4 +52,15 @@ public class RobotConstants
         public static int active = 0;
         public static int deactivate = 0;
     }
+
+    public static class Drone
+    {
+        public static double launchPosition = 0.0;
+        public static  double loadedPosition = 0.0;
+    }
+
+    public static class Climb
+    {
+        public static int climbPosition = 0;
+    }
 }
