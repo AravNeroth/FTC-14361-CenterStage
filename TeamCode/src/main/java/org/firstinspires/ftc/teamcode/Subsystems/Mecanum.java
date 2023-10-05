@@ -8,19 +8,21 @@ import com.qualcomm.hardware.bosch.BNO055IMU;
 
 public class Mecanum implements Subsystem
 {
-    private DcMotor leftFront, leftRear, rightFront, rightRear;
+    private DcMotorEx leftFront, leftRear, rightFront, rightRear;
     private double leftFrontPower, leftRearPower, rightFrontPower, rightRearPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
     private double slowOffset = 0.5;
+    HardwareMap hardwareMap;
     BNO055IMU imu;
 
     BNO055IMU.Parameters parameters;
     public Mecanum(HardwareMap hardwareMap)
     {
-        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotor.class, "leftRear");
-        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
-        rightRear = hardwareMap.get(DcMotor.class, "rightRear");
+        this.hardwareMap = hardwareMap;
+        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
+        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
+        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
+        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
 
         leftRear.setDirection(DcMotor.Direction.REVERSE);
         leftFront.setDirection(DcMotor.Direction.REVERSE);
