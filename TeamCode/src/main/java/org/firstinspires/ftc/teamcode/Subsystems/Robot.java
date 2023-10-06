@@ -30,7 +30,8 @@ public class Robot {
     public Robot(HardwareMap hardwareMap, Telemetry telemetry) {
         this.telemetry = telemetry;
 
-        drivetrain = new Mecanum(hardwareMap);
+        //drivetrain = new Mecanum(hardwareMap);
+
         arm = new Arm(hardwareMap);
         claw = new Claw(hardwareMap);
         activeIntake = new ActiveIntake(hardwareMap);
@@ -39,9 +40,13 @@ public class Robot {
         intake = new Intake(hardwareMap, telemetry);
         outtake = new Outtake(hardwareMap, telemetry);
 
+
+
         activeIntake.deactivateActiveMotor();
         armState = ArmState.INTAKING;
         clawState = ClawState.CLOSEDCLAW;
+
+
 
     }
 

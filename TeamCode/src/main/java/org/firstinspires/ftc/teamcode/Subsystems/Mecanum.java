@@ -1,29 +1,43 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
 
+import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.hardware.*;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 
+import java.util.List;
+
 public class Mecanum implements Subsystem
 {
-    private DcMotorEx leftFront, leftRear, rightFront, rightRear;
+    private DcMotor leftFront, leftRear, rightFront, rightRear;
     private double leftFrontPower, leftRearPower, rightFrontPower, rightRearPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
     private double slowOffset = 0.5;
+
+    HardwareMap hardwareMap;
     BNO055IMU imu;
 
     BNO055IMU.Parameters parameters;
-    public Mecanum(HardwareMap hardwareMap)
+    public Mecanum()
     {
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
 
-        leftRear.setDirection(DcMotorEx.Direction.REVERSE);
-        leftFront.setDirection(DcMotorEx.Direction.REVERSE);
+        List<LynxModule> allHubs = hardwareMap.getAll(LynxModule.class);
+
+        for (LynxModule hub : allHubs) {
+            hub.setBulkCachingMode(LynxModule.BulkCachingMode.AUTO);
+        }
+/*
+        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
+        leftRear = hardwareMap.get(DcMotor.class, "leftRear");
+        rightFront = hardwareMap.get(DcMotor.class, "rightFront");
+        rightRear = hardwareMap.get(DcMotor.class, "rightRear");
+
+ */
+
+        leftRear.setDirection(DcMotor.Direction.REVERSE);
+        leftFront.setDirection(DcMotor.Direction.REVERSE);
 
         // Retrieve the IMU from the hardware map
         imu = hardwareMap.get(BNO055IMU.class, "cIMU");
