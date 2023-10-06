@@ -42,7 +42,6 @@ public class Robot {
         activeIntake.deactivateActiveMotor();
         armState = ArmState.INTAKING;
         clawState = ClawState.CLOSEDCLAW;
-
     }
 
     public void setPosition(ExtensionState extendState, IntakeExtendState inExtendState, OuttakeExtendState outExtendState) {

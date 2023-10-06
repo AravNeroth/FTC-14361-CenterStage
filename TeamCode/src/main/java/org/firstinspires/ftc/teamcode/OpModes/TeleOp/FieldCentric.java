@@ -50,21 +50,21 @@ public class FieldCentric extends OpMode {
     public void loop()
     {
         driver.readButtons();
-        //operator.readButtons();
+        operator.readButtons();
         driveTrain.drive(driver);
         driveTrain.setMotorPower();
 
         //bot.initPID();
 
         // ---------------------------- DRIVER CODE ---------------------------- //
-        //if(driver.wasJustPressed(Button.LEFT_BUMPER))
-        //{
-        //    driveTrain.setMotorSlowDownPower();
-        //}
-        //if(driver.wasJustPressed(Button.Y))
-        //{
-        //    driveTrain.resetIMU();
-        //}
+        if(driver.wasJustPressed(Button.LEFT_BUMPER))
+        {
+            driveTrain.setMotorSlowDownPower();
+        }
+        if(driver.wasJustPressed(Button.Y))
+        {
+            driveTrain.resetIMU();
+        }
         // ---------------------------- OPERATOR CODE ---------------------------- //
         //if(operator.wasJustPressed(Button.DPAD_UP))
         //{
@@ -80,11 +80,11 @@ public class FieldCentric extends OpMode {
         //}
         //if(operator.wasJustPressed(Button.DPAD_RIGHT))
         //{
-
+        //      bot.setPostition(extendState.MEDIUMOUT, intakeExtendState.STATION, outtakeExtendState.EXTENDING);
         //}
         //if(operator.wasJustPressed(Button.Y))
        //{
-
+       //         bot.setPosition(extendState.MEDIUMIN, intakeExtendState.MEDIUMIN, outtakeExtendState.Extending);
         //}
         //if(operator.wasJustPressed(Button.X))
         //{

@@ -14,7 +14,6 @@ public class Mecanum implements Subsystem
     private double slowOffset = 0.5;
     HardwareMap hardwareMap;
     BNO055IMU imu;
-
     BNO055IMU.Parameters parameters;
     public Mecanum(HardwareMap hardwareMap)
     {
