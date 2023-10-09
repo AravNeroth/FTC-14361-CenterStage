@@ -21,8 +21,8 @@ public class Robot
         drivetrain = new Mecanum(hardwareMap);
         arm = new Arm(hardwareMap);
         claw = new Claw(hardwareMap);
-        outtakeSlide = new OuttakeSlide(hardwareMap);
-        intakeSlide = new IntakeSlide(hardwareMap);
+      //  outtakeSlide = new OuttakeSlide(hardwareMap);
+       // intakeSlide = new IntakeSlide(hardwareMap);
         state = state.LOWIN;
     }
 
