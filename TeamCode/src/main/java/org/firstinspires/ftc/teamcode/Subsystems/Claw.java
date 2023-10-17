@@ -9,7 +9,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class Claw implements Subsystem
 {
     private Servo leftHand, rightHand, wrist;
-
+    State state;
+/*
     public Claw(HardwareMap hardwareMap) {
         leftHand = hardwareMap.servo.get("leftHand");
         rightHand = hardwareMap.servo.get("rightHand");
@@ -61,4 +62,10 @@ public class Claw implements Subsystem
                 close();
         }
     }
+
+    public State getState(){
+        return state;
+    }
+    */
+
 }

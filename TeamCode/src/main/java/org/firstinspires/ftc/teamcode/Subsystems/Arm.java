@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode.Subsystems;
-import org.firstinspires.ftc.teamcode.Commands.State;
+import org.firstinspires.ftc.teamcode.Commands.armState;
 
 import com.arcrobotics.ftclib.command.Subsystem;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -8,11 +8,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Arm implements Subsystem
 {
-    private Servo leftArm,rightArm;
+   /* private Servo leftArm,rightArm;
     public Arm (HardwareMap hardwareMap)
     {
         leftArm = hardwareMap.servo.get("leftArm");
         rightArm = hardwareMap.servo.get("rightArm");
+
         rightArm.setDirection(Servo.Direction.REVERSE);
         //Maybe do to the servos being on different sides. Change later?
     }
@@ -31,17 +32,16 @@ public class Arm implements Subsystem
         //Will change later.
     }
 
-    public void setPosition(State state)
+    public void setPosition(armState state)
     {
         switch(state) {
-            case HIGHIN:
-            case MEDIUMIN:
-            case LOWIN:
-            case HIGHOUT:
-            case MEDIUMOUT:
-            case LOWOUT:
-            default:
+            case intaking:
                 setArmIntaking();
+                break;
+            case outaking:
+                setArmOutaking();
+            default:
+                setArmOutaking();
         }
-    }
+    }*/
 }
