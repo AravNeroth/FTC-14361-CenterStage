@@ -55,16 +55,9 @@ public class Robot {
         intakeSlide.resetEncoder();
     }
 
-    public void setZeroBehavior()
-    {
-        outtakeSlide.setZeroBehavior();
-        intakeSlide.setZeroBehavior();
-    }
-
     public void initPID()
     {
         outtakeSlide.initPID();
-        intakeSlide.initPID();
     }
 
     public void setIntakeState(IntakeExtendState intakeState)

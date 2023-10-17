@@ -22,6 +22,7 @@ public class RobotConstants
         public static double P = 0.0;
         public static double I = 0.0;
         public static double D = 0.0;
+        public static double F = 0.0;
 
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;

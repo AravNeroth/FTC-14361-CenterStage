@@ -25,7 +25,8 @@ public class Intake
         activeIntake = new ActiveIntake(hardwareMap);
     }
 
-    public void setPosition(ExtensionState state, IntakeExtendState extendState) {
+    public void setPosition(ExtensionState state, IntakeExtendState extendState)
+    {
         switch(extendState)
         {
             case EXTENDING:
@@ -51,6 +52,7 @@ public class Intake
                     claw.close();
                 }
                 break;
+
             case STATION:
                 activeIntake.deactivateActiveMotor();
                 intakeSlide.setPosition(state, extendState);
