@@ -12,12 +12,10 @@ public class Mecanum implements Subsystem
     private double leftFrontPower, leftRearPower, rightFrontPower, rightRearPower, rotY, rotX, rx, x, y, denominator;
     private double offset = 1.1;
     private double slowOffset = 0.5;
-    HardwareMap hardwareMap;
     BNO055IMU imu;
     BNO055IMU.Parameters parameters;
     public Mecanum(HardwareMap hardwareMap)
     {
-        this.hardwareMap = hardwareMap;
         leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
         leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
         rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
