@@ -59,6 +59,10 @@ public class Robot {
         return extensionState;
     }
 
+    public double getIntakeSlideMotorPosition(){
+        return intakeSlide.getPosition();
+    }
+
 
     }
 

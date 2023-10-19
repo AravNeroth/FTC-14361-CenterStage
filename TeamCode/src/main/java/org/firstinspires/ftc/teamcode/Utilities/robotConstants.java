@@ -26,8 +26,8 @@ public class robotConstants
         public static double pulleyCircumference = 0.0;
         public static double ticksPerRevolution = 0.0;
 
-        public static int fullExtension = 100;
-        public static int mediumExtension = 50;
+        public static int fullExtension = -3800;
+        public static int mediumExtension = -2200;
         public static int shortExtension = 0;
         public static int retracted = 0;
     }

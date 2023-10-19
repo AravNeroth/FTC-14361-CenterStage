@@ -19,9 +19,9 @@ public class IntakeSlide
     DcMotor intakeSlideMotor;
     private double  outtakeMotors;
     private double P, I, D;
-    private final double ticks_in_degrees = 384.5/360;
-    private double f = 0.0;
-    double power = .5;
+    private final int countsPerRev = 384;
+
+    double power = .7;
 
     intakeSlidesState intakeSlidesState;
     public IntakeSlide(HardwareMap hardwareMap){
@@ -31,8 +31,9 @@ public class IntakeSlide
         intakeSlideMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         intakeSlideMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
+
         //Stop and reset encoders doesnt work?
-        intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        //intakeSlideMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         P = robotConstants.IntakeSlide.P;
         I = robotConstants.IntakeSlide.I;
@@ -56,9 +57,9 @@ public class IntakeSlide
         int motorPosition = intakeSlideMotor.getCurrentPosition();
 
         double PID = intakePID.calculate(motorPosition, target);
-        double ff = Math.cos(Math.toRadians(target/ticks_in_degrees)) * f;
+       // double ff = Math.cos(Math.toRadians(target/ticks_in_degrees)) * f;
 
-        double power = PID + ff;
+      //  double power = PID + ff;
 
         intakeSlideMotor.setPower(power);
     }
@@ -75,27 +76,35 @@ public class IntakeSlide
                 switch(extensionState){
                     case HIGHIN:
                         intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.fullExtension);
-                        //intakeSlideMotor.setPower(power);
-                        setPIDMotorPower(robotConstants.IntakeSlide.fullExtension);
-                        //intakeSlideMotor.setPower(1);
+                        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+
+                        intakeSlideMotor.setPower(power);
+                       // setPIDMotorPower(robotConstants.IntakeSlide.fullExtension);
+
                         inExtendState = inExtendState.extended;
                         break;
                     case MEDIUMIN:
                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.mediumExtension);
-                        //intakeSlideMotor.setPower(power);
-                      // intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
-                       setPIDMotorPower(robotConstants.IntakeSlide.mediumExtension);
+
+                        intakeSlideMotor.setPower(power);
+
+                       //setPIDMotorPower(robotConstants.IntakeSlide.mediumExtension);
                         inExtendState = inExtendState.extended;
 
                         break;
                     case STATION:
 
-                        //intakeSlideMotor.setPower(0);
-                        intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
-                        setPIDMotorPower(robotConstants.IntakeSlide.retracted);
-                       // intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                        intakeSlideMotor.setPower(0);
+
+                       intakeSlideMotor.setTargetPosition(robotConstants.IntakeSlide.retracted);
+                        intakeSlideMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+                        intakeSlideMotor.setPower(power);
+                        //PIDMotorPower(robotConstants.IntakeSlide.retracted);
+
+
                         inExtendState = inExtendState.retracted;
                         break;
 
@@ -112,8 +121,13 @@ public class IntakeSlide
      setPIDMotorPower(100);
     }
 
-    public void setPowerZero(){
-        intakeSlideMotor.setPower(0);
+    public void setPower(){
+        intakeSlideMotor.setPower(1);
+    }
+
+    public double getPosition(){
+        double position = intakeSlideMotor.getCurrentPosition();
+        return position;
     }
 
 }

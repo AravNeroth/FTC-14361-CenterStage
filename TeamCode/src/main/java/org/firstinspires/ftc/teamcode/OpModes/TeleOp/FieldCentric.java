@@ -35,6 +35,7 @@ public class FieldCentric extends OpMode
     {
 
         telemetry.addLine("Total Runtime: " + getRuntime() + " seconds.");
+        telemetry.addLine("Position: " + bot.getIntakeSlideMotorPosition() + " ticks");
         telemetry.update();
         driver.readButtons();
         operator.readButtons();
@@ -57,9 +58,7 @@ public class FieldCentric extends OpMode
        if(operator.wasJustPressed(Button.DPAD_DOWN)){
             bot.setIntakeState(intakeSlidesState.extending, extensionState.STATION);
         }
-        else{
-            bot.intakeSlide.setPowerZero();
-        }
+
 
        if(operator.wasJustPressed(Button.LEFT_BUMPER))
         {
