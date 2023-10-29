@@ -116,7 +116,7 @@ public class AutonCloseBlue extends LinearOpMode {
 
         while(opModeIsActive()) {
             if (tagOfInterest.id == BLUELEFT) {
-
+                telemetry.addLine("Blue Left");
             } else if (tagOfInterest.id == BLUEMID) {
                 telemetry.addLine("Blue Mid");
             } else if (tagOfInterest.id == BLUERIGHT) {

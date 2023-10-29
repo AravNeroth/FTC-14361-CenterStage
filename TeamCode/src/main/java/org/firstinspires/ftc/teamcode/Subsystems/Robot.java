@@ -7,23 +7,26 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.Commands.State;
 
 public class Robot {
-    private Mecanum drivetrain;
+    public Mecanum drivetrain;
 
-    private Claw claw;
-    private intakeSlides intakeSlides;
-    private outtakeSlides outtakeSlides;
+    public Claw claw;
+    public Intake intake;
+
 
     public Robot(HardwareMap hardwareMap, Telemetry telemetry){
         drivetrain = new Mecanum(hardwareMap);
         claw = new Claw(hardwareMap);
-        intakeSlides = new intakeSlides(hardwareMap);
+        intake= new Intake(hardwareMap);
         //outtakeSlides = new outtakeSlides(hardwareMap);
 
     }
 
     public void setPosition(State state){
 
-        intakeSlides.setIntakeSlidesPosition(state);
+
+        intake.setIntakeState(state);
+       // intakeSlides.setIntakeSlidesPosition(state);
+
         //outtakeSlides.setOuttakeSlidesPosition(state);
     }
 

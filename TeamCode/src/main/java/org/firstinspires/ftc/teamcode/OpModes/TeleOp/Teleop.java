@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Subsystems.Mecanum;
 import org.firstinspires.ftc.teamcode.Subsystems.Claw;
+import org.firstinspires.ftc.teamcode.Subsystems.Robot;
 import org.firstinspires.ftc.teamcode.Subsystems.intakeSlides;
 import org.firstinspires.ftc.teamcode.Subsystems.outtakeSlides;
 
@@ -16,6 +17,7 @@ public class Teleop extends OpMode {
     private Claw claw;
     private intakeSlides intakeSlides;
     private outtakeSlides outtakeSlides;
+    private Robot bot;
 
 
 
@@ -29,7 +31,8 @@ public class Teleop extends OpMode {
         pilot = new GamepadEx(gamepad1);
         sentry = new GamepadEx(gamepad2);
         claw = new Claw(hardwareMap);
-        intakeSlides = new intakeSlides(hardwareMap);
+        bot = new Robot(hardwareMap, telemetry);
+
         //outtakeSlides = new outtakeSlides(hardwareMap);
 
 
@@ -44,6 +47,15 @@ public class Teleop extends OpMode {
         sentry.readButtons();
         drivetrain.fieldCentric(pilot);
         drivetrain.powerMotors();
+
+        if(gamepad1.a){
+            if(bot.intake.setIntakeState()){
+
+            }
+        }
+
+
+
 
 
     }

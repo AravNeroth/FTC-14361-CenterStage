@@ -14,7 +14,7 @@ public static class OuttakeSlide{
     public static int LOW = 0;
 
 }
-public static class IntakeSlide{
+public static class intakeSlides{
     public static double P = 0.0;
     public static double I = 0.0;
     public static double D = 0.0;
