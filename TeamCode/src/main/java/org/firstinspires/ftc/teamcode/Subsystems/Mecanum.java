@@ -18,10 +18,10 @@ public class Mecanum implements Subsystem
     BNO055IMU.Parameters parameters;
     public Mecanum (HardwareMap hardwareMap)
     {
-        leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        leftRear = hardwareMap.get(DcMotorEx.class, "leftRear");
-        rightFront = hardwareMap.get(DcMotorEx.class, "rightFront");
-        rightRear = hardwareMap.get(DcMotorEx.class, "rightRear");
+        leftFront = hardwareMap.get(DcMotorEx.class, "leftFrontMotor");
+        leftRear = hardwareMap.get(DcMotorEx.class, "backLeftMotor");
+        rightFront = hardwareMap.get(DcMotorEx.class, "rightFrontMotor");
+        rightRear = hardwareMap.get(DcMotorEx.class, "backRightMotor");
 
         leftRear.setDirection(DcMotorEx.Direction.REVERSE);
         leftFront.setDirection(DcMotorEx.Direction.REVERSE);

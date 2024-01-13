@@ -19,18 +19,17 @@ public class Robot
         this.telemetry = telemetry;
 
         drivetrain = new Mecanum(hardwareMap);
-        arm = new Arm(hardwareMap);
-        claw = new Claw(hardwareMap);
-        outtakeSlide = new OuttakeSlide(hardwareMap);
-        intakeSlide = new IntakeSlide(hardwareMap);
-        state = state.LOWIN;
+       // arm = new Arm(hardwareMap);
+       // claw = new Claw(hardwareMap);
+       // outtakeSlide = new OuttakeSlide(hardwareMap);
+       // intakeSlide = new IntakeSlide(hardwareMap);
+        //state = state.LOWIN;
     }
 
     public void setPosition(State state) {
-        claw.setPosition(state);
-        arm.setPosition(state);
-        outtakeSlide.setPosition(state);
-        intakeSlide.setPosition(state);
+//        arm.setPosition(state);
+      //  outtakeSlide.setPosition(state);
+      //  intakeSlide.setPosition(state);
     }
 
     public State getState()
